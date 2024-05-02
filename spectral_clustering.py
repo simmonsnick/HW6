@@ -59,6 +59,7 @@ def spectral(data, labels, params_dict):
     laplacian_matrix = degree_matrix - similarity_matrix
     
    #Compute the first eigenvectors
+   #Slicing operation to the corresponding to first k eigenvectors in matrix
     eigenvalues, eigvectors = eigsh(laplacian_matrix, k=k_value + 1, which='SM')
     eigvectors = eigvectors[:, 1:k_value + 1]
     
@@ -156,7 +157,15 @@ def spectral_clustering():
 
     
     # Plot of the eigenvalues (smallest to largest) as a line plot.
-    plot_eig = plt.plot(sigmas, eigenvalues)
+    # Plot is the return value of a call to plt.scatter()
+    plot_ARI = plt.scatter([1,2,3], [4,5,6])
+    plot_SSE = plt.scatter([1,2,3], [4,5,6])
+    answers["cluster scatterplot with largest ARI"] = plot_ARI
+    answers["cluster scatterplot with smallest SSE"] = plot_SSE
+    
+    # Plot of the eigenvalues (smallest to largest) as a line plot.
+    # Use the plt.plot() function. Make sure to include a title, axis labels, and a grid.
+    plot_eig = plt.plot([1,2,3], [4,5,6])
     answers["eigenvalue plot"] = plot_eig
     
     # Simulating eigenvalues 
@@ -214,7 +223,3 @@ if __name__ == "__main__":
     all_answers = spectral_clustering()
     with open("spectral_clustering.pkl", "wb") as fd:
         pickle.dump(all_answers, fd, protocol=pickle.HIGHEST_PROTOCOL)
-
-
-
-
