@@ -1,5 +1,4 @@
 import pickle
-import read as np
 import matplotlib.pyplot as plt
 from numpy import ndarray
 import numpy as np
